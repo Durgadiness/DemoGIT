@@ -1,0 +1,65 @@
+package com.adactin.baseclass;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.session.FirefoxFilter;
+
+public class Adactin_BaseClass1 {
+	
+	public static WebDriver driver;
+
+	public static void browser(String b) {
+        
+	      if (b.equalsIgnoreCase("chrome")) {
+				  	
+	    	System.setProperty("webdriver.chrome.driver",
+					"C:\\Users\\HP\\eclipse-workspace\\Task\\pom.proj\\Driver1\\chromedriver.exe");
+		  	 	     driver = new ChromeDriver();
+	      }
+		 else if (b.equalsIgnoreCase("firefox")) {
+			System.setProperty("webdriver.firefox.driver",
+						"C:\\Users\\HP\\eclipse-workspace\\Task\\\\pom.proj\\\\Driver1\\geckodriver.exe");
+			driver = (WebDriver) new FirefoxFilter();
+		}
+		 
+		 else {		
+			 System.out.println("No browser found");
+		}
+	     	}
+	   	public static void get(String s) {		
+	    driver.get(s);
+		}   
+	    public static void max() {
+		driver.manage().window().maximize();
+	}
+		public static void tsleep(int value) throws InterruptedException {
+		Thread.sleep(value);
+	}
+	    public static void keyinput(WebElement element, String value) {
+		element.sendKeys(value);
+
+	}    
+	    public static void click(WebElement element) {
+		element.click();
+		}  
+	    
+	    public static void action(WebElement element) {
+			Actions act = new Actions(driver);
+	    act.moveToElement(element).build().perform();
+		}
+	    
+	    public static void impwait() {
+		driver.manage().timeouts().implicitlyWait(1000,TimeUnit.SECONDS );
+		
+	    }
+	      
+	    
+	    public static void close() {
+	    driver.close();
+			
+	    }
+	 }
